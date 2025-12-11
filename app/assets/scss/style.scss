@@ -1,0 +1,14 @@
+$font-stack: Roboto, sans-serif;
+$primary-color: #00497c;
+
+body {
+  font: 100% $font-stack;
+}
+
+header {
+  background-color: $primary-color;
+}
+
+Footer {
+  background-color: $primary-color;
+}
