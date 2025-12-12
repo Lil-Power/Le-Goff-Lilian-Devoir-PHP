@@ -1,5 +1,4 @@
 CREATE SCHEMA `touche-pas-au-klaxon` ;
-
 USE `touche-pas-au-klaxon`;
 CREATE TABLE  agencies (
   id_agency INT NOT NULL AUTO_INCREMENT,
@@ -9,8 +8,7 @@ CREATE TABLE  agencies (
   PRIMARY KEY (id_agency)
 )
 
-USE `touche-pas-au-klaxon`;
-CREATE TABLE IF NOT EXISTS employees (
+CREATE TABLE employees (
   id_employee INT NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(100) NOT NULL,
   last_name VARCHAR(100) NOT NULL,
@@ -20,18 +18,17 @@ CREATE TABLE IF NOT EXISTS employees (
   PRIMARY KEY (id_employee)
 )
 
-USE `touche-pas-au-klaxon`;
 CREATE TABLE users (
-  id_user INT NOT NULL AUTO_INCREMENT,
+  id_user INT NOT NULL,
   employee_id INT NOT NULL,
   role ENUM('user','admin') NOT NULL DEFAULT 'user',
+  password VARCHAR(255) NOT NULL
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id_user),
   FOREIGN KEY (employee_id) REFERENCES employees(id_employee) ON DELETE CASCADE
 )
 
-USE `touche-pas-au-klaxon`;
 CREATE TABLE trips (
   id_trip INT NOT NULL AUTO_INCREMENT,
   user_id INT NOT NULL,
@@ -71,3 +68,8 @@ INTO TABLE employees
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 (last_name, first_name, phone, email);
+
+INSERT INTO `users`(id_user, employee_id, role, password, created_at, updated_at)
+VALUES (2, 2, 'user', '$2y$10$PzvPMi6.5/ERiZb/vd9bCOjn5xwcAfbQom9ceM4eHEzB/xtKEj7Jm', NOW(), NOW());
+INSERT INTO `users`(id_user, employee_id, role, password, created_at, updated_at)
+VALUES (3, 3,'admin', '$2y$10$CzMIqSuBeevfLvLHYotWru1vizYsnZ0uyWz8JgoPVIFXfWaZYfetO', NOW(), NOW());
