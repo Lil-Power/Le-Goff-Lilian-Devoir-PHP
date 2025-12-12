@@ -21,10 +21,7 @@ function getTrips() {
 }
 
 /** get all agencies */
-function getAgencies() {
-    $stmt = "SELECT * FROM agencies ORDER BY name_agency ASC";
-    return findAll($stmt);
-}
+require_once __DIR__ . '/AgenciesModel.php';
 
 /** create a trip */
 function createTrip($user_id, $departure_agency_id, $arrival_agency_id, $departure_datetime, $arrival_datetime, $total_seats, $contact_phone, $contact_email) {

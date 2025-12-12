@@ -33,10 +33,3 @@ function getAllUsers() {
     ");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
-
-function deleteUser($id_user) {
-    $bdd = connection();
-    $stmt = $bdd->prepare("DELETE FROM users WHERE id_user = ?");
-    return $stmt->execute([$id_user]);
-}
